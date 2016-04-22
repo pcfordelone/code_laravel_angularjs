@@ -138,6 +138,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Complements...
+         */
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+
+        /*
          * Application Service Providers...
          */
         FRD\Providers\AppServiceProvider::class,

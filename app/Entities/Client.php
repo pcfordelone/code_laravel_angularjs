@@ -1,6 +1,6 @@
 <?php
 
-namespace FRD\Models\Client;
+namespace FRD\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 

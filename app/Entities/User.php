@@ -1,6 +1,6 @@
 <?php
 
-namespace FRD;
+namespace FRD\Entities;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

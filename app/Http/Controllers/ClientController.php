@@ -2,7 +2,7 @@
 
 namespace FRD\Http\Controllers;
 
-use FRD\Models\Client\Client;
+use FRD\Entities\Client;
 use Illuminate\Http\Request;
 
 use FRD\Http\Requests;
