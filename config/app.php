@@ -149,6 +149,7 @@ return [
         FRD\Providers\AuthServiceProvider::class,
         FRD\Providers\EventServiceProvider::class,
         FRD\Providers\RouteServiceProvider::class,
+        FRD\Providers\ClientRepositoryProvider::class,
 
     ],
 

@@ -2,19 +2,17 @@
 
 namespace FRD\Http\Controllers;
 
-use FRD\Entities\Client;
+use FRD\Repositories\ClientRepositoryInterface;
 use Illuminate\Http\Request;
 
-use FRD\Http\Requests;
-use FRD\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
-    private $clientModel;
+    private $clientRepository;
 
-    public function __construct(Client $client)
+    public function __construct(ClientRepositoryInterface $client)
     {
-        $this->clientModel = $client;
+        $this->clientRepository = $client;
     }
 
     /**
@@ -24,7 +22,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return $this->clientModel->all();
+        return $this->clientRepository->all();
     }
 
 
@@ -36,7 +34,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->clientModel->create($request->all());
+        return $this->clientRepository->create($request->all());
     }
 
     /**
@@ -47,7 +45,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return $this->clientModel->find($id);
+        return $this->clientRepository->find($id);
     }
 
     /**
@@ -59,7 +57,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = $this->clientModel->find($id);
+        $client = $this->clientRepository->find($id);
         $client->update($request->all());
 
         return $client;
@@ -73,8 +71,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = $this->clientModel->find($id);
-        $this->clientModel->destroy($id);
+        $client = $this->clientRepository->find($id);
+        $this->clientRepository->delete($id);
 
         return $client;
     }
