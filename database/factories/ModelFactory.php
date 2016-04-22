@@ -19,3 +19,15 @@ $factory->define(FRD\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(FRD\Models\Client\Client::class, function (Faker\Generator $faker) {
+    return [
+        'name'          => $faker->name,
+        'type'          => $faker->boolean(50),
+        'responsible'   => $faker->name,
+        'email'         => $faker->safeEmail,
+        'adress'        => $faker->address,
+        'phone'         => $faker->phoneNumber,
+        'obs'           => $faker->sentence()
+    ];
+});
