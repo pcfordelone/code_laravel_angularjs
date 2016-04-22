@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        \FRD\Models\Client\Client::truncate();
+        factory(\FRD\Models\Client\Client::class, 10)->create();
         // $this->call(UserTableSeeder::class);
 
         Model::reguard();
