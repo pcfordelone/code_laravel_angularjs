@@ -74,6 +74,6 @@ class ClientController extends Controller
         $client = $this->clientRepository->find($id);
         $this->clientRepository->delete($id);
 
-        return $client;
+        return response()->json(["msg" => "O cliente {$client->name} foi deletado com sucesso"]);
     }
 }
