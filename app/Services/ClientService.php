@@ -4,14 +4,18 @@ namespace FRD\Services;
 
 
 use FRD\Repositories\ClientRepositoryInterface;
+use FRD\Validators\ClientValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 class ClientService
 {
     private $clientRepository;
+    private $clientValidator;
 
-    public function __construct(ClientRepositoryInterface $clientRepository)
+    public function __construct(ClientRepositoryInterface $clientRepository, ClientValidator $validator)
     {
         $this->clientRepository = $clientRepository;
+        $this->clientValidator = $validator;
     }
 
     public function store(array $data)
@@ -20,7 +24,20 @@ class ClientService
         // disparar notificação
         // postar tweet
 
-        return $this->clientRepository->create($data);
+        try {
+            $this->clientValidator->with($data)->passesOrFail();
+            return $this->clientRepository->create($data);
+
+        } catch (ValidatorException $e) {
+
+            return [
+                'error' => true,
+                'message' => $e->getMessageBag()
+            ];
+
+        }
+
+
     }
 
     public function update(array $data, $id)
