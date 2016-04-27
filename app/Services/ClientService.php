@@ -37,7 +37,6 @@ class ClientService
 
         }
 
-
     }
 
     public function update(array $data, $id)
@@ -46,6 +45,17 @@ class ClientService
         // disparar notificação
         // postar tweet
 
-        return $this->clientRepository->update($data, $id);
+        try {
+            $this->clientValidator->with($data)->passesOrFail();
+            return $this->clientRepository->update($data, $id);
+
+        } catch (ValidatorException $e) {
+
+            return [
+                'error' => true,
+                'message' => $e->getMessageBag()
+            ];
+
+        }
     }
 }

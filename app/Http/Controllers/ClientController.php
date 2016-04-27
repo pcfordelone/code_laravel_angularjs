@@ -3,16 +3,19 @@
 namespace FRD\Http\Controllers;
 
 use FRD\Repositories\ClientRepositoryInterface;
+use FRD\Services\ClientService;
 use Illuminate\Http\Request;
 
 
 class ClientController extends Controller
 {
     private $clientRepository;
+    private $clientService;
 
-    public function __construct(ClientRepositoryInterface $client)
+    public function __construct(ClientRepositoryInterface $client, ClientService $clientService)
     {
         $this->clientRepository = $client;
+        $this->clientService = $clientService;
     }
 
     /**
@@ -34,7 +37,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->clientRepository->create($request->all());
+        return $this->clientService->store($request->all());
     }
 
     /**
@@ -57,10 +60,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = $this->clientRepository->find($id);
-        $client->update($request->all());
-
-        return $client;
+        return $this->clientService->update($request->all(), $id);
     }
 
     /**
