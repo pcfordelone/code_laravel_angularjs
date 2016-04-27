@@ -28,7 +28,7 @@ class ClientService
         // enviar e-mail
         // disparar notificação
         // postar tweet
-        
+
         return $this->clientRepository->update($data, $id);
     }
 }
