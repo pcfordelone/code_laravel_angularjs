@@ -31,3 +31,15 @@ $factory->define(FRD\Entities\Client::class, function (Faker\Generator $faker) {
         'obs'           => $faker->sentence()
     ];
 });
+
+$factory->define(FRD\Entities\Project::class, function (Faker\Generator $faker) {
+    return [
+        'name'          => $faker->name,
+        'description'   => $faker->text(200),
+        'progress'      => $faker->text(50),
+        'status'        => $faker->text(50),
+        'duo_date'      => $faker->date('Y-m-d'),
+        'owner_id'      => $faker->numberBetween(1,10),
+        'client_id'      => $faker->numberBetween(1,10),
+    ];
+});
