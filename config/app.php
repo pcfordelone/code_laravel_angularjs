@@ -150,6 +150,7 @@ return [
         FRD\Providers\EventServiceProvider::class,
         FRD\Providers\RouteServiceProvider::class,
         FRD\Providers\ClientRepositoryProvider::class,
+        FRD\Providers\ProjectRepositoryProvider::class,
 
     ],
 
