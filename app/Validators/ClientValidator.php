@@ -16,4 +16,18 @@ class ClientValidator extends LaravelValidator
         'adress'        => 'required'
     ];
 
+    protected $messages = [
+        'required'      => 'O campo :attribute é obrigatório.',
+        'email'         => 'É necessário inserir um e-mail válido',
+        'max'           => 'O campo :attribute permite até :max caracteres',
+    ];
+
+    protected $attributes = [
+        'name'          => 'Nome',
+        'responsible'   => 'Descrição',
+        'email'         => 'E-mail',
+        'phone'         => 'Teleone',
+        'adress'        => 'Endereço'
+    ];
+
 }
