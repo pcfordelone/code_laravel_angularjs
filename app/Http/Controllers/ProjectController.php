@@ -72,6 +72,9 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        return $this->projectRepository->delete($id);
+        $project = $this->projectRepository->find($id);
+        $this->projectRepository->delete($id);
+
+        return response()->json(["msg" => "O cliente {$project->name} foi excluído com sucesso"]);
     }
 }

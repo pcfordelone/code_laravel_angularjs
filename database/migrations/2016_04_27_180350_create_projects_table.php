@@ -20,10 +20,10 @@ class CreateProjectsTable extends Migration
             $table->string('status', 50)->nullable();
             $table->date('duo_date');
 
-            $table->integer('owner_id')->unsigned();
-            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->integer('owner_id')->unsigned();
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });
