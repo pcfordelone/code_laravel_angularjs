@@ -49,7 +49,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return $this->projectRepository->find($id);
+        return $this->projectRepository->with(['owner','client'])->find($id);
     }
 
     /**
