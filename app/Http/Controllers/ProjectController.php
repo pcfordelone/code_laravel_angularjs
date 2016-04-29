@@ -27,7 +27,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return $this->projectRepository->all();
+        return $this->projectRepository->with(['owner','client'])->all();
     }
 
     /**
