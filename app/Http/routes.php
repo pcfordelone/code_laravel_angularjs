@@ -26,3 +26,11 @@ Route::get('project/{id}',    ['as' => 'project.show', 'uses'    => 'ProjectCont
 Route::post('project',        ['as' => 'project.store', 'uses'   => 'ProjectController@store']);
 Route::put('project/{id}',    ['as' => 'project.update', 'uses'  => 'ProjectController@update']);
 Route::delete('project/{id}', ['as' => 'project.destroy', 'uses' => 'ProjectController@destroy']);
+
+Route::group(['prefix' => 'project/{id}'], function() {
+    Route::get('note',             ['as' => 'project.note.index', 'uses'   => 'ProjectNoteController@index']);
+    Route::get('note/{noteId}',    ['as' => 'project.note.show', 'uses'    => 'ProjectNoteController@show']);
+    Route::post('note',            ['as' => 'project.note.store', 'uses'   => 'ProjectNoteController@store']);
+    Route::put('note/{noteId}',    ['as' => 'project.note.update', 'uses'  => 'ProjectNoteController@update']);
+    Route::delete('note/{noteId}', ['as' => 'project.note.destroy', 'uses' => 'ProjectNoteController@destroy']);
+});

@@ -151,6 +151,7 @@ return [
         FRD\Providers\RouteServiceProvider::class,
         FRD\Providers\ClientRepositoryProvider::class,
         FRD\Providers\ProjectRepositoryProvider::class,
+        FRD\Providers\ProjectNoteRepositoryProvider::class,
 
     ],
 
