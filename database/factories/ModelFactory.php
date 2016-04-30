@@ -51,3 +51,13 @@ $factory->define(FRD\Entities\ProjectNote::class, function (Faker\Generator $fak
         'project_id'     => $faker->numberBetween(1,10),
     ];
 });
+
+$factory->define(FRD\Entities\ProjectTask::class, function (Faker\Generator $faker) {
+    return [
+        'name'           => $faker->title,
+        'description'    => $faker->text(200),
+        'start_date'     => $faker->date('Y-m-d'),
+        'duo_date'       => $faker->date('Y-m-d'),
+        'project_id'     => $faker->numberBetween(1,10),
+    ];
+});

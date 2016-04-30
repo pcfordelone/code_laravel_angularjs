@@ -152,7 +152,7 @@ return [
         FRD\Providers\ClientRepositoryProvider::class,
         FRD\Providers\ProjectRepositoryProvider::class,
         FRD\Providers\ProjectNoteRepositoryProvider::class,
-
+        FRD\Providers\ProjectTaskRepositoryProvider::class,
     ],
 
     /*
