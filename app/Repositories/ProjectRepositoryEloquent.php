@@ -8,7 +8,6 @@
 
 namespace FRD\Repositories;
 
-use FRD\Entities\Client;
 use FRD\Entities\Project;
 use Prettus\Repository\Eloquent\BaseRepository;
 

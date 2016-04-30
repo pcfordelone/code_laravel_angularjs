@@ -2,12 +2,10 @@
 
 namespace FRD\Services;
 
-
-use FRD\Repositories\ClientRepositoryInterface;
 use FRD\Repositories\ProjectRepositoryInterface;
-use FRD\Validators\ClientValidator;
 use FRD\Validators\ProjectValidator;
 use Prettus\Validator\Exceptions\ValidatorException;
+
 
 class ProjectService
 {
