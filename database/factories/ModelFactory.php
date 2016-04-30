@@ -43,3 +43,11 @@ $factory->define(FRD\Entities\Project::class, function (Faker\Generator $faker) 
         'client_id'     => $faker->numberBetween(1,10),
     ];
 });
+
+$factory->define(FRD\Entities\ProjectNote::class, function (Faker\Generator $faker) {
+    return [
+        'title'          => $faker->title,
+        'note'           => $faker->text(200),
+        'project_id'     => $faker->numberBetween(1,10),
+    ];
+});
