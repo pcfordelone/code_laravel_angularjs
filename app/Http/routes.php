@@ -28,9 +28,20 @@ Route::put('project/{id}',    ['as' => 'project.update', 'uses'  => 'ProjectCont
 Route::delete('project/{id}', ['as' => 'project.destroy', 'uses' => 'ProjectController@destroy']);
 
 Route::group(['prefix' => 'project/{id}'], function() {
-    Route::get('note',             ['as' => 'project.note.index', 'uses'   => 'ProjectNoteController@index']);
-    Route::get('note/{noteId}',    ['as' => 'project.note.show', 'uses'    => 'ProjectNoteController@show']);
-    Route::post('note',            ['as' => 'project.note.store', 'uses'   => 'ProjectNoteController@store']);
-    Route::put('note/{noteId}',    ['as' => 'project.note.update', 'uses'  => 'ProjectNoteController@update']);
-    Route::delete('note/{noteId}', ['as' => 'project.note.destroy', 'uses' => 'ProjectNoteController@destroy']);
+    Route::group(['prefix' => 'note'], function() {
+        Route::get('/',             ['as' => 'project.note.index', 'uses'   => 'ProjectNoteController@index']);
+        Route::get('{noteId}',    ['as' => 'project.note.show', 'uses'    => 'ProjectNoteController@show']);
+        Route::post('/',            ['as' => 'project.note.store', 'uses'   => 'ProjectNoteController@store']);
+        Route::put('{noteId}',    ['as' => 'project.note.update', 'uses'  => 'ProjectNoteController@update']);
+        Route::delete('{noteId}', ['as' => 'project.note.destroy', 'uses' => 'ProjectNoteController@destroy']);
+    });
+
+    Route::group(['prefix' => 'task'], function() {
+        Route::get('/',             ['as' => 'project.task.index', 'uses'   => 'ProjectTaskController@index']);
+        Route::get('{taskId}',    ['as' => 'project.task.show', 'uses'    => 'ProjectTaskController@show']);
+        Route::post('/',            ['as' => 'project.task.store', 'uses'   => 'ProjectTaskController@store']);
+        Route::put('{taskId}',    ['as' => 'project.task.update', 'uses'  => 'ProjectTaskController@update']);
+        Route::delete('{taskId}', ['as' => 'project.task.destroy', 'uses' => 'ProjectTaskController@destroy']);
+    });
+
 });
