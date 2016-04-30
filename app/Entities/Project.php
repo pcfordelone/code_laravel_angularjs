@@ -30,4 +30,9 @@ class Project extends Model
     {
         return $this->hasMany(ProjectNote::class);
     }
+
+    public function project_tasks()
+    {
+        return $this->hasMany(ProjectTask::class);
+    }
 }

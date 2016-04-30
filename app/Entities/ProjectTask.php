@@ -13,4 +13,9 @@ class ProjectTask extends Model
         'duo_date',
         'project_id',
     ];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }
