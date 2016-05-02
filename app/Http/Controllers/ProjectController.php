@@ -49,7 +49,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return $this->projectRepository->with(['owner','client'])->find($id);
+        return $this->projectService->find($id);
     }
 
     /**
@@ -72,9 +72,6 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        $project = $this->projectRepository->find($id);
-        $this->projectRepository->delete($id);
-
-        return response()->json(["msg" => "O cliente {$project->name} foi excluído com sucesso"]);
+        return $this->projectService->destroy($id);
     }
 }
