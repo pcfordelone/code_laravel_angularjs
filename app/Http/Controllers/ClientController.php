@@ -48,7 +48,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return $this->clientRepository->find($id);
+        return $this->clientService->find($id);
     }
 
     /**
@@ -71,9 +71,6 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = $this->clientRepository->find($id);
-        $this->clientRepository->delete($id);
-
-        return response()->json(["msg" => "O cliente {$client->name} foi deletado com sucesso"]);
+        return $this->clientService->destroy($id);
     }
 }
