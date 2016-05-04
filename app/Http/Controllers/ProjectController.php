@@ -74,4 +74,11 @@ class ProjectController extends Controller
     {
         return $this->projectService->destroy($id);
     }
+
+    public function members($id)
+    {
+        $project = $this->projectService->find($id);
+        return $project->project_members;
+    }
+    
 }
