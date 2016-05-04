@@ -62,3 +62,10 @@ $factory->define(FRD\Entities\ProjectTask::class, function (Faker\Generator $fak
         'project_id'     => $faker->numberBetween(1,10),
     ];
 });
+
+$factory->define(FRD\Entities\ProjectMember::class, function (Faker\Generator $faker) {
+    return [
+        'project_id'     => $faker->numberBetween(1,10),
+        'user_id'        => $faker->numberBetween(1,10),
+    ];
+});

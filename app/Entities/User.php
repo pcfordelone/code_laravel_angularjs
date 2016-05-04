@@ -42,4 +42,10 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(Project::class);
     }
+
+    public function project_members()
+    {
+        return $this->hasMany(ProjectMember::class);
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace FRD\Services;
 
+use FRD\Entities\ProjectMember;
 use FRD\Repositories\ProjectRepositoryInterface;
 use FRD\Validators\ProjectValidator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -87,4 +88,30 @@ class ProjectService
             return ['error'=>true, 'Ocorreu algum erro ao excluir o projeto.'];
         }
     }
+
+    public function addMember($project_id, $user_id, ProjectMember $projectMember)
+    {
+        return $projectMember->create([
+            'project_id' => $project_id,
+            'user_id'    => $user_id
+        ]);
+    }
+
+    public function removeMember($id, ProjectMember $projectMember)
+    {
+        try {
+            $projectMember->find($id)->delete();
+            return ['success'=>true, "Membro excluído com sucesso!"];
+        } catch (ModelNotFoundException $e) {
+            return ['error'=>true, 'Membro não encontrado.'];
+        } catch (\Exception $e) {
+            return ['error'=>true, 'Ocorreu algum erro ao excluir o membro.'];
+        }
+    }
+
+    public function isMember()
+    {
+
+    }
+
 }
