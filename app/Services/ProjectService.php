@@ -111,11 +111,7 @@ class ProjectService
 
     public function isMember($id, ProjectMember $projectMember)
     {
-        if (count($projectMember->find($id)) > 0) {
-            return ['sucess' => true, "Sim, é um membro do projeto"];
-        }
 
-        return ['error' => true, "Não é um membro do projeto"];
     }
 
 }

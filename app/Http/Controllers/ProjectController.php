@@ -77,8 +77,7 @@ class ProjectController extends Controller
 
     public function members($id)
     {
-        $project = $this->projectService->find($id);
-        return $project->project_members;
+        return $this->projectService->find($id)->project_members;
     }
-    
+
 }
