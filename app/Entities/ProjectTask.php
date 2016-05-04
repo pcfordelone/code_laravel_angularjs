@@ -11,6 +11,7 @@ class ProjectTask extends Model
         'description',
         'start_date',
         'duo_date',
+        'status',
         'project_id',
     ];
 

@@ -58,6 +58,7 @@ $factory->define(FRD\Entities\ProjectTask::class, function (Faker\Generator $fak
         'description'    => $faker->text(200),
         'start_date'     => $faker->date('Y-m-d'),
         'duo_date'       => $faker->date('Y-m-d'),
+        'status'         => $faker->numberBetween(1,9),
         'project_id'     => $faker->numberBetween(1,10),
     ];
 });
