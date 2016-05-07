@@ -38,6 +38,6 @@ class Project extends Model
 
     public function project_members()
     {
-        return $this->hasMany(ProjectMember::class);
+        return $this->belongsToMany(User::class, 'project_members');
     }
 }

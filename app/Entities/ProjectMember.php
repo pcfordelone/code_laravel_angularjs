@@ -12,14 +12,14 @@ class ProjectMember extends Model
         'user_id'
     ];
 
-    public function project()
+    public function projects()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsToMany(Project::class, '');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 
 }

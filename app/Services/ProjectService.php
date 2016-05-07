@@ -109,9 +109,26 @@ class ProjectService
         }
     }
 
-    public function isMember($id, ProjectMember $projectMember)
+    public function isOwner($projectId, $ownerId)
     {
+        if (count($this->projectRepository->findWhere(['id' => $projectId, 'owner_id' => $ownerId]))) {
+            return true;
+        }
 
+        return false;
+    }
+
+    public function isMember($projectId, $userId)
+    {
+        $project = $this->projectRepository->find($projectId);
+
+        foreach($project->project_members as $member) {
+            if ($member->id == $userId) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
