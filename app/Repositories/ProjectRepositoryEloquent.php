@@ -10,6 +10,7 @@ namespace FRD\Repositories;
 
 use FRD\Entities\Project;
 use Prettus\Repository\Eloquent\BaseRepository;
+use FRD\Presenters\ProjectPresenter;
 
 class ProjectRepositoryEloquent extends BaseRepository implements ProjectRepositoryInterface
 {
@@ -17,6 +18,11 @@ class ProjectRepositoryEloquent extends BaseRepository implements ProjectReposit
     public function model()
     {
         return Project::class;
+    }
+
+    public function presenter()
+    {
+        return ProjectPresenter::class;
     }
 
 }
