@@ -2,11 +2,17 @@
 
 namespace FRD\Services;
 
+use FRD\Entities\Project;
+use FRD\Entities\ProjectFile;
 use FRD\Entities\ProjectMember;
 use FRD\Repositories\ProjectRepositoryInterface;
+use FRD\Validators\ProjectFileValidator;
 use FRD\Validators\ProjectValidator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 
@@ -14,11 +20,13 @@ class ProjectService
 {
     private $projectRepository;
     private $projectValidator;
+    private $projectFileValidator;
 
-    public function __construct(ProjectRepositoryInterface $projectRepository, ProjectValidator $projectValidator)
+    public function __construct(ProjectRepositoryInterface $projectRepository, ProjectValidator $projectValidator, ProjectFileValidator $projectFileValidator)
     {
         $this->projectRepository = $projectRepository;
         $this->projectValidator = $projectValidator;
+        $this->projectFileValidator = $projectFileValidator;
     }
 
     public function find($id)
@@ -129,6 +137,45 @@ class ProjectService
         }
 
         return false;
+    }
+
+    public function addFile(array $data, $id)
+    {
+        $project = $this->projectRepository->skipPresenter()->find($id);
+
+        try {
+            $this->projectFileValidator->with($data)->passesOrFail();
+
+            $projectFile = $project->project_files()->create([
+                'name' => $data['name'],
+                'description' => $data['description'],
+                'extension' => $data['file']->getClientOriginalExtension(),
+                'project_id' => $id,
+            ]);
+
+            Storage::put($projectFile->id . '.' . $data['file']->getClientOriginalExtension(), File::get($data['file']));
+
+            return $projectFile;
+
+        } catch (ValidatorException $e) {
+
+            return [
+                'error' => true,
+                'message' => $e->getMessageBag()
+            ];
+
+        }
+    }
+
+    public function removeFile($id, $fileId)
+    {
+        $project = $this->projectRepository->skipPresenter()->find($id);
+        $file = $project->project_files()->find($fileId);
+
+        Storage::delete($file->id . '.' . $file->extension);
+        $project->project_files()->find($fileId)->destroy($fileId);
+
+        return ['success' => 'Arquivo deletado com sucesso.'];
     }
 
 }
