@@ -10,6 +10,7 @@ namespace FRD\Repositories;
 
 use FRD\Entities\ProjectNote;
 use Prettus\Repository\Eloquent\BaseRepository;
+use FRD\Presenters\ProjectNotePresenter;
 
 class ProjectNoteRepositoryEloquent extends BaseRepository implements ProjectNoteRepositoryInterface
 {
@@ -17,6 +18,11 @@ class ProjectNoteRepositoryEloquent extends BaseRepository implements ProjectNot
     public function model()
     {
         return ProjectNote::class;
+    }
+
+    public function presenter()
+    {
+        return ProjectNotePresenter::class;
     }
 
 }
