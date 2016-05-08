@@ -12,6 +12,6 @@ class ProjectMemberTableSeeder extends Seeder
     public function run()
     {
         \FRD\Entities\ProjectMember::truncate();
-        factory(\FRD\Entities\ProjectMember::class, 50)->create();
+        factory(\FRD\Entities\ProjectMember::class, 10)->create();
     }
 }
